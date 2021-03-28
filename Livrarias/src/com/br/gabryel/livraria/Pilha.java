@@ -17,7 +17,10 @@ public class Pilha {
 	}
 
 	public Livro pop() {
-		return this.livros.get(livros.size() - 1);
+		Livro livro = this.livros.get(livros.size() - 1);
+		this.livros.remove(livro);			
+		
+		return livro;
 	}
 	
 	public int count() {

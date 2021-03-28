@@ -1,4 +1,5 @@
 module Livrarias {
+	requires junit;
 	
 	/**
 	 *	Regras de aceite
