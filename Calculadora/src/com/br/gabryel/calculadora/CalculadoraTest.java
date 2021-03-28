@@ -1,10 +1,12 @@
 package com.br.gabryel.calculadora;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
+//@FixMethodOrder(MethodSorters.JVM) Forma de ordenar a execução dos Métodos. não e uma boa pratica sua utilização em teste
 public class CalculadoraTest {
 
 	@Test(timeout = 200)
@@ -29,6 +31,16 @@ public class CalculadoraTest {
 		int resultado = calculadora.somar(-4, -6);
 		assertTrue(-10 == resultado);
 	}
+	
+	@Test
+	public void testDividir() {
+		Calculadora calculadora = new Calculadora();
+		
+		int result = calculadora.dividir(10, 2);
+		
+		assertEquals(5, result);
+	}
+	
 	
 	@Ignore
 	public void testSomarSemAnnotation() {
