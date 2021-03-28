@@ -1,23 +1,50 @@
 package com.br.gabryel.retangulo;
 
+import static org.junit.Assert.*;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+@RunWith(Parameterized.class)
 public class RetanguloTest {
 
-	Retangulo retangulo;
+	private int base;
+	private int altura;
+	private int area;
 
-	public boolean testCalcularArea() {
+	@Parameters
+	public static Collection<Object[]> parametros() {
 
-		int resultadoEsperado = 20;
-		retangulo = new Retangulo(10, 2);
-
-		return resultadoEsperado == retangulo.calcularArea();
+		return Arrays.asList(new Object[][] {
+			{10,20,200},
+			{10,30,300},
+			{5,30,150}
+		});
+	}
+		
+	public RetanguloTest(int base, int altura, int area) {
+		this.base = base;
+		this.altura = altura;
+		this.area = area;
 	}
 
-	public boolean testCalcularPerimetro() {
+	@Test
+	public void testCalcularArea() {
+		Retangulo retangulo = new Retangulo(base, altura);
+		int resultado = retangulo.calcularArea();
 		
-		int resultadoEsperado = 24;
-		retangulo = new Retangulo(10, 2);
+		assertEquals(area, resultado);
+	}
 
-		return resultadoEsperado == retangulo.calcularPerimetro();
+	@Ignore
+	public void testCalcularPerimetro() {
+		fail("Not yet implemented");
 	}
 
 }
