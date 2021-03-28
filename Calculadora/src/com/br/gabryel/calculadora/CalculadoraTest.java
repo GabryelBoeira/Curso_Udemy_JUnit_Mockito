@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class CalculadoraTest {
 
-	@Test
+	@Test(timeout = 200)
 	public void testSomar() {
 		Calculadora calculadora = new Calculadora();
 		int resultado = calculadora.somar(5, 5);
