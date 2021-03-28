@@ -9,7 +9,7 @@ public class Pilha {
 	private List<Livro> livros = new ArrayList<>();
 
 	public void push(Livro livro) {
-		if (livros.size() >= limite) return;
+		if (livros.size() >= limite) throw new ArrayStoreException();
 		
 		if (!livro.getTitulo().startsWith("A") && !livro.getTitulo().startsWith("O")) return; 
 		

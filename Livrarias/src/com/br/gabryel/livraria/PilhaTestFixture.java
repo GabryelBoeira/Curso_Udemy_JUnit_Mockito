@@ -11,11 +11,11 @@ import org.junit.Test;
 public class PilhaTestFixture {
 
 	private static Pilha pilha;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		pilha = new Pilha();
-		
+
 		System.out.println("Executou o @BeforeClass");
 	}
 
@@ -32,13 +32,13 @@ public class PilhaTestFixture {
 		Livro livro3 = new Livro("O Globo");
 		Livro livro4 = new Livro("A Lua");
 		Livro livro5 = new Livro("O Sol");
-		
+
 		pilha.push(livro1);
 		pilha.push(livro2);
 		pilha.push(livro3);
 		pilha.push(livro4);
 		pilha.push(livro5);
-		
+
 		System.out.println("Excutou @Before");
 	}
 
@@ -49,26 +49,38 @@ public class PilhaTestFixture {
 			pilha.pop();
 			tamanho--;
 		}
-		
+
 		System.out.println("Excutou @After");
 	}
 
+	// Tratando com try/catch
 	@Test
 	public void testNaoAdicionarLivroAlemLimite() {
-		
-		pilha.push(new Livro("A Volta ao mundo em 80 dias"));	
-		Livro resultado = pilha.pop();
-		
+
+		try {
+			pilha.push(new Livro("A Volta ao mundo em 80 dias"));
+			fail();
+		} catch (ArrayStoreException e) {
+			assertTrue(true);
+		}
+
 		System.out.println("Excutou testNaoAdicionarLivroAlemLimite()");
-		assertEquals("O Sol", resultado.getTitulo());
 	}
-	
+
+	// Tratando com para esperar uma Exeption
+	@Test(expected = ArrayStoreException.class)
+	public void testNaoAdicionarLivroAlemLimiteExeption() {
+
+		System.out.println("Excutou testNaoAdicionarLivroAlemLimiteExeption()");
+		pilha.push(new Livro("A Volta ao mundo em 80 dias"));
+	}
+
 	@Test
 	public void testNaoAdicionaPorPadraoLetraInicial() {
 		pilha.pop();
-		pilha.push(new Livro("Não Valido"));	
+		pilha.push(new Livro("Não Valido"));
 		Livro resultado = pilha.pop();
-		
+
 		assertEquals("A Lua", resultado.getTitulo());
 		System.out.println("Excutou testNaoAdicionaPorPadraoLetraInicial()");
 	}
