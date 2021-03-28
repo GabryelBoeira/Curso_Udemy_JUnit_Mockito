@@ -1,9 +1,15 @@
 package com.br.gabryel.livraria;
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
 public class PilhaTest {
 	Pilha pilha;
 
-	public boolean testRetiraUltimoLivro() {
+	@Test
+	public void testRetiraUltimoLivro() {
 		pilha = new Pilha();
 		Livro livro1 = new Livro("A Fortaleza");
 		Livro livro2 = new Livro("A Emboscada");
@@ -15,9 +21,10 @@ public class PilhaTest {
 
 		String resultadoEsperado = livro3.getTitulo();
 
-		return pilha.pop().getTitulo().equals(resultadoEsperado);
+		assertEquals(pilha.pop().getTitulo(), resultadoEsperado);
 	}
 
+	@Ignore
 	public boolean testNaoAdicionarLivroAlemLimite() {
 		pilha = new Pilha();
 
@@ -36,11 +43,12 @@ public class PilhaTest {
 		pilha.push(livro6);
 
 		String resultadoEsperado = livro5.getTitulo();
-
+		
 		return pilha.pop().getTitulo().equals(resultadoEsperado);
 	}
 	
-	public boolean testNaoAdicionaPorPadraoLetraInicial() {
+	@Test
+	public void testNaoAdicionaPorPadraoLetraInicial() {
 		pilha = new Pilha();
 		Livro livro1 = new Livro("A Fortaleza");
 		Livro livro2 = new Livro("Emboscada");
@@ -50,7 +58,7 @@ public class PilhaTest {
 
 		String resultadoEsperado = livro1.getTitulo();
 
-		return pilha.pop().getTitulo().equals(resultadoEsperado);
+		assertEquals(pilha.pop().getTitulo(), resultadoEsperado);
 	}
 
 }
