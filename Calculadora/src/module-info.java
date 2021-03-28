@@ -3,7 +3,7 @@ module Calculadora {
 	
 	/**
 	 *	@author Gabryel 
-	 * 	Aplicação simples com teste criado apartir do framework JUint 
+	 * 	Aplicação simples com teste criado apartir do framework JUnit 
 	 * 
 	 *
 	 **/
