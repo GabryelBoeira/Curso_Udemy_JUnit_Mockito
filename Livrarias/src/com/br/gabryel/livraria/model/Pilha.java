@@ -23,7 +23,7 @@ public class Pilha {
 			return;
 
 		this.livros.add(livro);
-		pilhaRepository.save(this);
+		this.pilhaRepository.save(this);
 	}
 
 	public Livro pop() {

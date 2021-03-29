@@ -1,20 +1,22 @@
 package com.br.gabryel.livraria;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.br.gabryel.livraria.mock.TestPilhaRepository;
 import com.br.gabryel.livraria.model.Livro;
 import com.br.gabryel.livraria.model.Pilha;
+import com.br.gabryel.livraria.repository.PilhaRepositoryImpl;
 
 public class PilhaTest {
-	Pilha pilha;
 
+	PilhaRepositoryImpl pilhaRepositoryMock = mock(PilhaRepositoryImpl.class);
+	
 	@Test
 	public void testRetiraUltimoLivro() {
-		pilha = new Pilha(new TestPilhaRepository());
+		Pilha pilha = new Pilha(pilhaRepositoryMock);
 		Livro livro1 = new Livro("A Fortaleza");
 		Livro livro2 = new Livro("A Emboscada");
 		Livro livro3 = new Livro("O Naufrago");
@@ -30,7 +32,7 @@ public class PilhaTest {
 
 	@Ignore
 	public boolean testNaoAdicionarLivroAlemLimite() {
-		pilha = new Pilha(new TestPilhaRepository());
+		Pilha pilha = new Pilha(pilhaRepositoryMock);
 
 		Livro livro1 = new Livro("A Fortaleza");
 		Livro livro2 = new Livro("A Emboscada");
@@ -53,7 +55,7 @@ public class PilhaTest {
 	
 	@Test
 	public void testNaoAdicionaPorPadraoLetraInicial() {
-		pilha = new Pilha(new TestPilhaRepository());
+		Pilha pilha = new Pilha(pilhaRepositoryMock);
 		Livro livro1 = new Livro("A Fortaleza");
 		Livro livro2 = new Livro("Emboscada");
 
