@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({PilhaTestFixture.class, PilhaTest.class})
+@SuiteClasses({PilhaTestFixture.class, PilhaTest.class, LivroTest.class})
 public class PilhaSuiteTest {
 	
 }

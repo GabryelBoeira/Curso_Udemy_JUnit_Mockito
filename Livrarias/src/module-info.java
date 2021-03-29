@@ -1,5 +1,6 @@
 module Livrarias {
 	requires junit;
+	exports com.br.gabryel.livraria;
 	
 	/**
 	 *	Regras de aceite
