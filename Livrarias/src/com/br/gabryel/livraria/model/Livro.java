@@ -1,4 +1,4 @@
-package com.br.gabryel.livraria;
+package com.br.gabryel.livraria.model;
 
 public class Livro {
 

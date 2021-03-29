@@ -10,13 +10,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.br.gabryel.livraria.mock.TestPilhaRepository;
+import com.br.gabryel.livraria.model.Livro;
+import com.br.gabryel.livraria.model.Pilha;
+
 public class PilhaTestFixture {
 
 	private static Pilha pilha;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		pilha = new Pilha();
+		pilha = new Pilha(new TestPilhaRepository());
 
 		System.out.println("Executou o @BeforeClass");
 	}
