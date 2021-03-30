@@ -7,9 +7,9 @@ public class Venda {
 	private Cliente cliente;
 	private double valor;
 	private CreditoService creditoService;
-	
+
 	private boolean pagamentoAVista = true;
-	
+
 	public Venda(double valor, Cliente cliente, CreditoService creditoService) {
 		this.cliente = cliente;
 		this.valor = valor;
@@ -18,10 +18,17 @@ public class Venda {
 
 	public boolean checkout() {
 
-		if(this.pagamentoAVista) return true;
+		if (this.pagamentoAVista)
+			return true;
+
+		try {
 			
-		double limite = creditoService.getLimiteCredito(cliente.getCpf());
-		return valor < limite;
+			double limite = creditoService.getLimiteCredito(cliente.getCpf());
+			return valor < limite;
+		} catch (RuntimeException e) {
+			
+			return false;
+		}
 	}
 
 	/**

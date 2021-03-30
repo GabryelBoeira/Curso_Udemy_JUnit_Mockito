@@ -17,9 +17,9 @@ class VendaTest {
 
 		Cliente cliente = new Cliente("456", "João");
 		CreditoService creditoService = mock(CreditoService.class);
+		when(creditoService.getLimiteCredito(cliente.getCpf())).thenReturn(2500d);
 		Venda venda = new Venda(2000, cliente, creditoService);
 		venda.setPagamentoAVista(false);
-		when(creditoService.getLimiteCredito(cliente.getCpf())).thenReturn(2500d);
 
 		boolean resultado = venda.checkout();
 		assertTrue(resultado);
@@ -30,9 +30,9 @@ class VendaTest {
 
 		Cliente cliente = new Cliente("456", "João");
 		CreditoService creditoService = mock(CreditoService.class);
+		when(creditoService.getLimiteCredito(cliente.getCpf())).thenReturn(1000d);
 		Venda venda = new Venda(2000, cliente, creditoService);
 		venda.setPagamentoAVista(false);
-		when(creditoService.getLimiteCredito(cliente.getCpf())).thenReturn(1000d);
 
 		boolean resultado = venda.checkout();
 		assertFalse(resultado);
@@ -47,6 +47,19 @@ class VendaTest {
 		when(creditoService.getLimiteCredito(cliente.getCpf())).thenReturn(1000d);
 		
 		verify(creditoService, never()).getLimiteCredito(cliente.getCpf());
+	}
+	
+	@Test
+	void testCheckoutNaoEfetivaVendaSeCreditoServiceFalhar() {
+
+		Cliente cliente = new Cliente("456", "João");
+		CreditoService creditoService = mock(CreditoService.class);
+		when(creditoService.getLimiteCredito(anyString())).thenThrow(new RuntimeException());
+		Venda venda = new Venda(2000, cliente, creditoService);
+		venda.setPagamentoAVista(false);
+		
+		boolean resultado = venda.checkout();
+		assertFalse(resultado);
 	}
 
 }
