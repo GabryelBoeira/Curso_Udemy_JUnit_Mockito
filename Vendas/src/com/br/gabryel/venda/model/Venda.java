@@ -8,6 +8,8 @@ public class Venda {
 	private double valor;
 	private CreditoService creditoService;
 	
+	private boolean pagamentoAVista = true;
+	
 	public Venda(double valor, Cliente cliente, CreditoService creditoService) {
 		this.cliente = cliente;
 		this.valor = valor;
@@ -16,6 +18,8 @@ public class Venda {
 
 	public boolean checkout() {
 
+		if(this.pagamentoAVista) return true;
+			
 		double limite = creditoService.getLimiteCredito(cliente.getCpf());
 		return valor < limite;
 	}
@@ -46,5 +50,19 @@ public class Venda {
 	 */
 	public void setValor(double valor) {
 		this.valor = valor;
+	}
+
+	/**
+	 * @return the pagamentoAVista
+	 */
+	public boolean isPagamentoAVista() {
+		return pagamentoAVista;
+	}
+
+	/**
+	 * @param pagamentoAVista the pagamentoAVista to set
+	 */
+	public void setPagamentoAVista(boolean pagamentoAVista) {
+		this.pagamentoAVista = pagamentoAVista;
 	}
 }
